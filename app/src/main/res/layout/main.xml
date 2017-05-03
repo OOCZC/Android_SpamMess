@@ -2,7 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <EditText
+        android:id="@+id/et_1"
+        android:hint="请输入"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/button1"
@@ -10,7 +17,13 @@
         android:layout_height="wrap_content"
         android:text="test"
         android:textSize="28sp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="30dp" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp" />
+
+    <ImageView
+        android:id="@+id/iv_1"
+        android:src="@drawable/ooc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
