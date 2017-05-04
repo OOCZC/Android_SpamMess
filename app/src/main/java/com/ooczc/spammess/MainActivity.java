@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.StringTokenizer;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     Button bt;
     EditText et;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         //这里的tv_a1必须在setContentView(R.layout.activity_main)的activity_main中.
 
         ListView listView = (ListView) findViewById(R.id.lv_main);
+
 
 
         List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
@@ -89,10 +91,18 @@ public class MainActivity extends AppCompatActivity {
         map.put("mess",getResources().getString(R.string.mess));
         list.add(map);
 
-        SimpleAdapter adapter = new SimpleAdapter(this,list,R.layout.item,
-                new String[]{"num","mess"},new int[]{R.id.tv_num,R.id.tv_mess}
-                );
+//        SimpleAdapter adapter = new SimpleAdapter(this,list,R.layout.item,
+//                new String[]{"num","mess"},new int[]{R.id.tv_num,R.id.tv_mess}
+//                );
+        MyAdapter adapter = new MyAdapter(this);
+        adapter.setList(list);
+
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(this);
+
+        listView.setOnItemLongClickListener(this);
+
 
 
 //        String[] data = {"大大","大法师","更改","个地方","(･ｪ-)","哈根","统一","发改","的点点滴滴"
@@ -130,5 +140,17 @@ public class MainActivity extends AppCompatActivity {
         tv.setTextColor(getResources().getColor(R.color.colorPrimary));
         */
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(this,"点击"+position,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Toast.makeText(this,"长按"+position,Toast.LENGTH_SHORT).show();
+        return true; //false表示不消化事件，事件继续传递下去,传给点击事件
     }
 }
