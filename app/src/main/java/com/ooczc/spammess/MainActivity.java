@@ -1,5 +1,6 @@
 package com.ooczc.spammess;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     Button bt;
     EditText et;
+    List<Map<String,Object>> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+        list = new ArrayList<Map<String,Object>>();
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("num","234333124");
         map.put("mess","大幅上升1");
@@ -145,6 +147,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(this,"点击"+position,Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        intent.setClass(this,MessActivity.class);
+
+        Map<String,Object> map =
+                (Map<String, Object>) parent.getItemAtPosition(position);
+        intent.putExtra("index",""+position);
+        intent.putExtra("index2",""+map.get("mess"));
+        startActivity(intent);
     }
 
     @Override
