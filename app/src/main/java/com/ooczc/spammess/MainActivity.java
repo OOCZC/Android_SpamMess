@@ -1,10 +1,14 @@
 package com.ooczc.spammess;
 
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -22,7 +26,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.StringTokenizer;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public class MainActivity extends AppCompatActivity implements
+        AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     Button bt;
     EditText et;
@@ -43,57 +48,19 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         list = new ArrayList<Map<String,Object>>();
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("num","234333124");
-        map.put("mess","大幅上升1");
+        map.put("mess","大幅上升");
         list.add(map);
 
         map = new HashMap<String,Object>();
         map.put("num","234000004");
         map.put("mess",getResources().getString(R.string.mess));
         list.add(map);
+        getSmsFromPhone();
+        Log.i("zc","--------000000000");
 
-        map = new HashMap<String,Object>();
-        map.put("num","3143124");
-        map.put("mess","大幅上升");
-        list.add(map);
 
-        map = new HashMap<String,Object>();
-        map.put("num","333143124");
-        map.put("mess",getResources().getString(R.string.mess));
-        list.add(map);
 
-        map = new HashMap<String,Object>();
-        map.put("num","23242443124");
-        map.put("mess",getResources().getString(R.string.mess));
-        list.add(map);
 
-        map = new HashMap<String,Object>();
-        map.put("num","1111143124");
-        map.put("mess",getResources().getString(R.string.mess));
-        list.add(map);
-        map = new HashMap<String,Object>();
-        map.put("num","234000004");
-        map.put("mess",getResources().getString(R.string.mess));
-        list.add(map);
-
-        map = new HashMap<String,Object>();
-        map.put("num","3143124");
-        map.put("mess","大幅上升");
-        list.add(map);
-
-        map = new HashMap<String,Object>();
-        map.put("num","333143124");
-        map.put("mess",getResources().getString(R.string.mess));
-        list.add(map);
-
-        map = new HashMap<String,Object>();
-        map.put("num","23242443124");
-        map.put("mess",getResources().getString(R.string.mess));
-        list.add(map);
-
-        map = new HashMap<String,Object>();
-        map.put("num","1111143124");
-        map.put("mess",getResources().getString(R.string.mess));
-        list.add(map);
 
 //        SimpleAdapter adapter = new SimpleAdapter(this,list,R.layout.item,
 //                new String[]{"num","mess"},new int[]{R.id.tv_num,R.id.tv_mess}
@@ -109,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-//        String[] data = {"大大","大法师","更改","个地方","(･ｪ-)","哈根","统一","发改","的点点滴滴"
-//                ,"大大","大法师","更改","个地方","(･ｪ-)","哈根","统一","发改","的点点滴滴"};
+//       String[] data = {"大大","大法师","更改","个地方","(･ｪ-)"
+//       ,"大大","大法师","更改","个地方","(･ｪ-)","哈根","统一","发改","的点点滴滴"};
 //
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 //                this,android.R.layout.simple_list_item_1,data
@@ -145,9 +112,49 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         */
 
     }
+    private Uri SMS_INBOX = Uri.parse("content://sms/");
+    public void getSmsFromPhone() {
+        ContentResolver cr = getContentResolver();
+        String[] projection = new String[] {"_id", "address", "person",
+                "body", "date", "type" };//"_id", "address", "person",, "date", "type
+//        String where = " address = '106632133' AND date >  "
+//                + (System.currentTimeMillis() - 10 * 60 * 1000);
+//        String where = "date >"+(System.currentTimeMillis() - 10 * 60 * 1000);
+        String test = String.valueOf(System.currentTimeMillis() - 10 * 60 * 1000);
+        Log.i("zc",test+"**********");
+        Cursor cur = cr.query(SMS_INBOX, projection, null, null, "date desc");
+        Log.i("zc","---------111111111");
+        if (null == cur) {
+            Log.i("zc","---------333333333");
+            Map<String,Object> map = new HashMap<String,Object>();
+            map.put("num","110");
+            map.put("mess","读取短信出错！");
+            list.add(map);
+            return;
+        }
+        Log.i("zc","---------4444444444");
+        while(cur.moveToNext()) {
+            String number = cur.getString(cur.getColumnIndex("address"));//手机号
+            String name = cur.getString(cur.getColumnIndex("person"));//联系人姓名列表
+            String body = cur.getString(cur.getColumnIndex("body"));
+            Map<String,Object> map = new HashMap<String,Object>();
+            map.put("num",number);
+            map.put("mess",body);
+            list.add(map);
+            Log.i("zc","---------222222222");
+            //这里我是要获取自己短信服务号码中的验证码~~
+//            Pattern pattern = Pattern.compile(" [a-zA-Z0-9]{10}");
+//            Matcher matcher = pattern.matcher(body);
+//            if (matcher.find()) {
+//                String res = matcher.group().substring(1, 11);
+//                mobileText.setText(res);
+//            }
+        }
+    }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent,
+                            View view, int position, long id) {
 //        Toast.makeText(this,"点击"+position,Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.setClass(this,MessActivity.class);
@@ -160,7 +167,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+    public boolean onItemLongClick(AdapterView<?> parent,
+                                   View view, int position, long id) {
 
 //        Toast.makeText(this,"长按"+position,Toast.LENGTH_SHORT).show();
 
@@ -172,7 +180,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         builder.setPositiveButton("发送", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText (MainActivity.this,"已发送",Toast.LENGTH_SHORT).show();
+                Toast.makeText (MainActivity.this,
+                        "已发送",Toast.LENGTH_SHORT).show();
             }
         });
         builder.create().show();
