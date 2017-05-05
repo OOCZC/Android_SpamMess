@@ -1,6 +1,8 @@
 package com.ooczc.spammess;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -146,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this,"点击"+position,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,"点击"+position,Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.setClass(this,MessActivity.class);
 
@@ -160,7 +162,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Toast.makeText(this,"长按"+position,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,"长按"+position,Toast.LENGTH_SHORT).show();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.people);
+        builder.setTitle("个性化过滤");
+        builder.setMessage("是否把当前短信发送至服务器，实现个性化过滤？");
+        builder.setNegativeButton("不发送", null);
+        builder.setPositiveButton("发送", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText (MainActivity.this,"已发送",Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.create().show();
+
         return true; //false表示不消化事件，事件继续传递下去,传给点击事件
     }
 }

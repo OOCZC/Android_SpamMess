@@ -6,11 +6,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:background="#ffffff"
         >
         <ImageView
             android:id="@+id/iv_2"
-            android:layout_width="@dimen/listview_high"
-            android:layout_height="@dimen/listview_high"
+            android:layout_marginLeft="7dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/people"
             android:layout_centerVertical="true"/>
         <LinearLayout
