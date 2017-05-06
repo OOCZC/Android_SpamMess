@@ -46,21 +46,11 @@ public class MainActivity extends AppCompatActivity implements
 
 
         list = new ArrayList<Map<String,Object>>();
-        Map<String,Object> map = new HashMap<String,Object>();
-        map.put("num","234333124");
-        map.put("mess","大幅上升");
-        list.add(map);
 
-        map = new HashMap<String,Object>();
-        map.put("num","234000004");
-        map.put("mess",getResources().getString(R.string.mess));
-        list.add(map);
         getSmsFromPhone();
-        Log.i("zc","--------000000000");
 
 
-
-
+        Log.i("zc","---------MainActivity  111");
 
 //        SimpleAdapter adapter = new SimpleAdapter(this,list,R.layout.item,
 //                new String[]{"num","mess"},new int[]{R.id.tv_num,R.id.tv_mess}
@@ -75,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements
         listView.setOnItemLongClickListener(this);
 
 
+        Log.i("zc","---------MainActivity  222");
 
 //       String[] data = {"大大","大法师","更改","个地方","(･ｪ-)"
 //       ,"大大","大法师","更改","个地方","(･ｪ-)","哈根","统一","发改","的点点滴滴"};
@@ -120,19 +111,19 @@ public class MainActivity extends AppCompatActivity implements
 //        String where = " address = '106632133' AND date >  "
 //                + (System.currentTimeMillis() - 10 * 60 * 1000);
 //        String where = "date >"+(System.currentTimeMillis() - 10 * 60 * 1000);
-        String test = String.valueOf(System.currentTimeMillis() - 10 * 60 * 1000);
-        Log.i("zc",test+"**********");
+//        String test = String.valueOf(System.currentTimeMillis() - 10 * 60 * 1000);
+//        Log.i("zc",test+"**********");
         Cursor cur = cr.query(SMS_INBOX, projection, null, null, "date desc");
-        Log.i("zc","---------111111111");
+        Log.i("zc","---------getSmsFromPhone  111");
         if (null == cur) {
-            Log.i("zc","---------333333333");
+//            Log.i("zc","---------333333333");
             Map<String,Object> map = new HashMap<String,Object>();
             map.put("num","110");
             map.put("mess","读取短信出错！");
             list.add(map);
             return;
         }
-        Log.i("zc","---------4444444444");
+//        Log.i("zc","---------4444444444");
         while(cur.moveToNext()) {
             String number = cur.getString(cur.getColumnIndex("address"));//手机号
             String name = cur.getString(cur.getColumnIndex("person"));//联系人姓名列表
@@ -141,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements
             map.put("num",number);
             map.put("mess",body);
             list.add(map);
-            Log.i("zc","---------222222222");
+//            Log.i("zc","---------222222222");
             //这里我是要获取自己短信服务号码中的验证码~~
 //            Pattern pattern = Pattern.compile(" [a-zA-Z0-9]{10}");
 //            Matcher matcher = pattern.matcher(body);
