@@ -4,16 +4,20 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.media.MediaBrowserCompat;
 import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
+
+import static android.R.attr.filter;
 
 public class MyReceiver extends BroadcastReceiver {
-    public MyReceiver() {
-    }
+//    public MyReceiver() {
+//    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -34,16 +38,22 @@ public class MyReceiver extends BroadcastReceiver {
                         + "   body:" + msg.getDisplayMessageBody() + "  time:"
                         + msg.getTimestampMillis());
 
-                Toast.makeText(context,msg.getDisplayMessageBody(),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context,msg.getDisplayMessageBody(),Toast.LENGTH_SHORT).show();
                 Log.i("zc","---------MyReceiver 33");
-                //在这里写自己的逻辑
-                if (msg.getOriginatingAddress().equals("10086")) {
-                    //TODO
-
-                }
 
             }
         }
+        Intent intent1 = new Intent();
+        intent1.setClass(context,Dialog_Activity.class);
+
+        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent1.putExtra("number", "" + msg.getOriginatingAddress());
+        intent1.putExtra("body", "" + msg.getDisplayMessageBody());
+        this.abortBroadcast();
+        context.startActivity(intent1);
+        Log.i("zc","---------MyReceiver 444");
+
+
     }
 //        throw new UnsupportedOperationException("Not yet implemented");
 }
