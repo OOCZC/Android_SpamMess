@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements
         getSmsFromPhone();
 
 
-        Log.i("zc","---------MainActivity  111");
+        Log.i("zcc","---------MainActivity  111");
 
 //        SimpleAdapter adapter = new SimpleAdapter(this,list,R.layout.item,
 //                new String[]{"num","mess"},new int[]{R.id.tv_num,R.id.tv_mess}
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements
 //        String test = String.valueOf(System.currentTimeMillis() - 10 * 60 * 1000);
 //        Log.i("zc",test+"**********");
         Cursor cur = cr.query(SMS_INBOX, projection, null, null, "date desc");
-        Log.i("zc","---------getSmsFromPhone  111");
+        Log.i("zcc","---------getSmsFromPhone  111");
         if (null == cur) {
 //            Log.i("zc","---------333333333");
             Map<String,Object> map = new HashMap<String,Object>();
@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements
     public void onItemClick(AdapterView<?> parent,
                             View view, int position, long id) {
 //        Toast.makeText(this,"点击"+position,Toast.LENGTH_SHORT).show();
+
         Intent intent = new Intent();
         intent.setClass(this,MessActivity.class);
 
@@ -155,6 +156,8 @@ public class MainActivity extends AppCompatActivity implements
         intent.putExtra("index",""+position);
         intent.putExtra("index2",""+map.get("mess"));
         startActivity(intent);
+
+
     }
 
     @Override

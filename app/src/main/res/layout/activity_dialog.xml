@@ -7,10 +7,56 @@
     -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
-    android:background="#00aaaa">
+    android:layout_width="300dp"
+    android:layout_height="170dp"
+    >
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
 
-
+        >
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/people"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发现垃圾短信"
+            android:textColor="#000"
+            android:textSize="22sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/dialog"
+        android:textColor="#000"
+        android:lines="2"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+    <Button
+        android:id="@+id/buttonReturn"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:background="#ffffff"
+        android:text="确定"
+        android:textSize="16sp"
+        android:textColor="#6A5ACD"
+        android:layout_marginLeft="107dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="10dp"/>
 
 </LinearLayout>

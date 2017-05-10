@@ -25,10 +25,10 @@ public class MyReceiver extends BroadcastReceiver {
         // an Intent broadcast.
         Bundle bundle = intent.getExtras();
         SmsMessage msg = null;
-        Log.i("zc","---------MyReceiver start");
+        Log.i("zcc","---------MyReceiver start");
         if (null != bundle) {
             Object[] smsObj = (Object[]) bundle.get("pdus");
-            Log.i("zc","---------MyReceiver 22");
+            Log.i("zcc","---------MyReceiver 22");
             for (Object object : smsObj) {
                 msg = SmsMessage.createFromPdu((byte[]) object);
                 Date date = new Date(msg.getTimestampMillis());//时间
@@ -39,7 +39,7 @@ public class MyReceiver extends BroadcastReceiver {
                         + msg.getTimestampMillis());
 
 //                Toast.makeText(context,msg.getDisplayMessageBody(),Toast.LENGTH_SHORT).show();
-                Log.i("zc","---------MyReceiver 33");
+                Log.i("zcc","---------MyReceiver 33");
 
             }
         }
@@ -51,7 +51,7 @@ public class MyReceiver extends BroadcastReceiver {
         intent1.putExtra("body", "" + msg.getDisplayMessageBody());
         this.abortBroadcast();
         context.startActivity(intent1);
-        Log.i("zc","---------MyReceiver 444");
+        Log.i("zcc","---------MyReceiver 444");
 
 
     }
