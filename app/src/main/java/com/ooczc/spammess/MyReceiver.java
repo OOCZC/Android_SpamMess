@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.media.MediaBrowserCompat;
 import android.telephony.SmsMessage;
 import android.util.Log;
@@ -43,12 +44,27 @@ public class MyReceiver extends BroadcastReceiver {
 
             }
         }
+        String mess = msg.getDisplayMessageBody();
+        String anw = ""; int flag;
+        try{
+            anw = NetClient.isSpamMess(mess);
+        } catch (Exception e){
+            Toast.makeText(context,"网络连接错误!",Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+
+        if(anw.charAt(0)  == 1)
+            flag = 1;
+        else
+            flag = 0;
+
         Intent intent1 = new Intent();
         intent1.setClass(context,Dialog_Activity.class);
 
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent1.putExtra("number", "" + msg.getOriginatingAddress());
-        intent1.putExtra("body", "" + msg.getDisplayMessageBody());
+        intent1.putExtra("body", "" + mess);
+        intent1.putExtra("flag", flag);
         this.abortBroadcast();
         context.startActivity(intent1);
         Log.i("zcc","---------MyReceiver 444");

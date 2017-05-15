@@ -18,7 +18,26 @@ public class Dialog_Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialog);
         Log.i("zcc","---------Dialog_Activity 111");
+        TextView tv_num = (TextView) findViewById(R.id.tv_num);
+//        int flag = getIntent().getStringExtra("flag");
+        int flag = getIntent().getIntExtra("flag",3);
+        String num = getIntent().getStringExtra("number");
+        String mess = getIntent().getStringExtra("body");
+        if(flag == 3){
+            System.out.println("Dialog_Activity ******* flag == 3");
+        }
+        if(flag ==1){
+            tv_num.setText("发现来自"+num+"的垃圾短信");
+//            tv_num.setTextColor(0xff0000);
+//            tv_num.setTextSize();
+        }
+        else{
+            tv_num.setText("来自"+num);
+        }
+
+
         TextView tv = (TextView) findViewById(R.id.tv_dialog);
+        tv.setText(mess);
 
         Button bt = (Button) findViewById(R.id.buttonReturn);
         tv.setOnClickListener(new View.OnClickListener() {

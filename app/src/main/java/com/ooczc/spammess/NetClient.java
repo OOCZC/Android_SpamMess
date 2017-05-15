@@ -15,6 +15,7 @@ public class NetClient {
 
     public static String isSpamMess(String mess) throws IOException {
         //1.建立客户端socket连接，指定服务器位置及端口
+
         Socket socket =new Socket(ServerIP,6464);
         System.out.println("111");
         //2.得到socket读写流  
