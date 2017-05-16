@@ -27,15 +27,15 @@ public class Dialog_Activity extends Activity {
             Log.i("zcc","---------Dialog ******** wrong 3");
 
         }
-        if(flag ==1){
-            tv_num.setText("发现来自"+num+"的垃圾短信");
-            Log.i("zcc","---------Dialog ******** flag == 1");
-//            tv_num.setTextColor(0xff0000);
-//            tv_num.setTextSize();
+        if(flag == 1){
+            tv_num.setText("发现垃圾短信");
+            Log.i("zcc","---------Dialog ******** flag == 1 "+flag);
+            tv_num.setTextColor(this.getResources().getColor(R.color.Red));
+            tv_num.setTextSize(22);
         }
         else{
             tv_num.setText("来自"+num);
-            Log.i("zcc","---------Dialog ******** flag == 0");
+            Log.i("zcc","---------Dialog ******** flag == 0 "+flag);
         }
 
 
@@ -43,6 +43,7 @@ public class Dialog_Activity extends Activity {
         tv.setText(mess);
 
         Button bt = (Button) findViewById(R.id.buttonReturn);
+//        bt.setTextColor(this.getResources().getColor(R.color.Black));
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -51,14 +51,14 @@ public class MyReceiver extends BroadcastReceiver {
             NetClient netclient = new NetClient();
             Log.i("zcc","MyReceiver ********* 222"+mess);
             anw = netclient.isSpamMess(mess);
-            Log.i("zcc","MyReceiver ********* 333"+anw);
+            Log.i("zcc","MyReceiver ********* 333  "+anw);
         } catch (Exception e){
 //            Toast.makeText(context,"网络连接错误!",Toast.LENGTH_SHORT).show();
             Log.i("zcc","---------MyReceiver 网络连接错误");
             e.printStackTrace();
         }
 
-        if(anw.charAt(0)  == 1) {
+        if(anw.charAt(0)  == '1') {
             flag = 1;
             Log.i("zcc","---------MyReceiver  flag == 1");
         }

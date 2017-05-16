@@ -15,7 +15,7 @@ import java.net.Socket;
 import static com.ooczc.spammess.R.string.mess;
 
 public class NetClient {
-    String ServerIP = "172.26.49.3";
+    String ServerIP = "123.206.66.244";
     String reply = "8";
     String messStr;
 
@@ -26,7 +26,7 @@ public class NetClient {
         new MyThread().start();
         Log.i("zcc","---------NetClient   isSpamMess *****2 mess ="+mess);
         while(true){
-            Log.i("zcc", "---------NetClient  循环 1");
+            Log.i("zzc", "---------NetClient  循环 1");
             int i=0;int j=0;
             if(reply != "8") {
                 return reply;
@@ -113,7 +113,7 @@ public class NetClient {
 
     class MyThread extends Thread{
 //        public String mess;
-        String ServerIP = "172.26.49.3";
+        String ServerIP = "123.206.66.244";
 //        public MyThread(String str){
 //            mess = str;
 //        }
@@ -122,7 +122,7 @@ public class NetClient {
             Log.i("zcc", "---------MyThread   0");
             try {
                 Log.i("zcc", "---------MyThread   1");
-                Socket socket = new Socket(ServerIP, 6464);
+                Socket socket = new Socket(ServerIP, 6463);
                 Log.i("zcc", "---------MyThread   2");
 //        System.out.println("111");
                 //2.得到socket读写流
