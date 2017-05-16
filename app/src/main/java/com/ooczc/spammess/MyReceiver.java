@@ -47,8 +47,11 @@ public class MyReceiver extends BroadcastReceiver {
         String mess = msg.getDisplayMessageBody();
         String anw = ""; int flag;
         try{
-            Log.i("zcc","MyReceiver *********"+mess);
-            anw = NetClient.isSpamMess(mess);
+            Log.i("zcc","MyReceiver ********* 111"+mess);
+            NetClient netclient = new NetClient();
+            Log.i("zcc","MyReceiver ********* 222"+mess);
+            anw = netclient.isSpamMess(mess);
+            Log.i("zcc","MyReceiver ********* 333"+anw);
         } catch (Exception e){
 //            Toast.makeText(context,"网络连接错误!",Toast.LENGTH_SHORT).show();
             Log.i("zcc","---------MyReceiver 网络连接错误");
