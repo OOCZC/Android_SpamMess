@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements
         listView.setOnItemLongClickListener(this);
 
 
-        Log.i("zc","---------MainActivity  222");
+        Log.i("zcc","---------MainActivity  222");
 
 //       String[] data = {"大大","大法师","更改","个地方","(･ｪ-)"
 //       ,"大大","大法师","更改","个地方","(･ｪ-)","哈根","统一","发改","的点点滴滴"};

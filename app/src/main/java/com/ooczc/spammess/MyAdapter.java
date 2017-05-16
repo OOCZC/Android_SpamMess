@@ -1,6 +1,7 @@
 package com.ooczc.spammess;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,10 +51,13 @@ public class MyAdapter extends BaseAdapter{
         View view = inflater.inflate(R.layout.item,null);
         TextView num = (TextView) view.findViewById(R.id.tv_num);
         TextView mess = (TextView) view.findViewById(R.id.tv_mess);
+//        Log.i("zcc","---------MyAdepter   111");
 
         Map map = list.get(position);
         num.setText((String) map.get("num"));
         mess.setText((String)map.get("mess"));
+//        Log.i("zcc","---------MyAdepter   222");
+
 
         return view;
     }

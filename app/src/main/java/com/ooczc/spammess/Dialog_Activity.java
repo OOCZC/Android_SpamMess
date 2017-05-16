@@ -24,15 +24,18 @@ public class Dialog_Activity extends Activity {
         String num = getIntent().getStringExtra("number");
         String mess = getIntent().getStringExtra("body");
         if(flag == 3){
-            System.out.println("Dialog_Activity ******* flag == 3");
+            Log.i("zcc","---------Dialog ******** wrong 3");
+
         }
         if(flag ==1){
             tv_num.setText("发现来自"+num+"的垃圾短信");
+            Log.i("zcc","---------Dialog ******** flag == 1");
 //            tv_num.setTextColor(0xff0000);
 //            tv_num.setTextSize();
         }
         else{
             tv_num.setText("来自"+num);
+            Log.i("zcc","---------Dialog ******** flag == 0");
         }
 
 
