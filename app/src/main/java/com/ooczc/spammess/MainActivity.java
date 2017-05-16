@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements
 
         Map<String,Object> map =
                 (Map<String, Object>) parent.getItemAtPosition(position);
-        intent.putExtra("index",""+position);
+        intent.putExtra("index",""+map.get("num"));
         intent.putExtra("index2",""+map.get("mess"));
         startActivity(intent);
 
@@ -166,16 +166,26 @@ public class MainActivity extends AppCompatActivity implements
 
 //        Toast.makeText(this,"长按"+position,Toast.LENGTH_SHORT).show();
 
+//        final AdapterView a = parent;
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(R.drawable.people);
         builder.setTitle("个性化过滤");
         builder.setMessage("是否把当前短信发送至服务器，实现个性化过滤？");
         builder.setNegativeButton("不发送", null);
         builder.setPositiveButton("发送", new DialogInterface.OnClickListener() {
-            @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText (MainActivity.this,
-                        "已发送",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,
+                        "已发送", Toast.LENGTH_SHORT).show();
+
+//                String str = (String)list.get(which).get("mess");
+
+//                Log.i("zcc", "---------onItemLongClick  000 " + list.get(which).get("mess"));
+
+//                Map<String, Object> map =
+//                        (Map<String, Object>) a.getItemAtPosition(which);
+//                intent.putExtra("index",""+position);
+//                Log.i("zcc", "---------onItemLongClick  111 " + map.get("mess"));
+//                map.get("mess");
             }
         });
         builder.create().show();
@@ -183,3 +193,14 @@ public class MainActivity extends AppCompatActivity implements
         return true; //false表示不消化事件，事件继续传递下去,传给点击事件
     }
 }
+
+/*
+public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText (MainActivity.this,
+                        "已发送",Toast.LENGTH_SHORT).show();
+                Map<String,Object> map =
+                        (Map<String, Object>) parent.getItemAtPosition(position);
+//                intent.putExtra("index",""+position);
+                map.get("mess");
+
+ */

@@ -26,6 +26,7 @@ public class MyReceiver extends BroadcastReceiver {
         // an Intent broadcast.
         Bundle bundle = intent.getExtras();
         SmsMessage msg = null;
+        String mess = "";
         Log.i("zcc","---------MyReceiver start");
         if (null != bundle) {
             Object[] smsObj = (Object[]) bundle.get("pdus");
@@ -35,16 +36,17 @@ public class MyReceiver extends BroadcastReceiver {
                 Date date = new Date(msg.getTimestampMillis());//时间
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String receiveTime = format.format(date);
-                System.out.println("number:" + msg.getOriginatingAddress()
-                        + "   body:" + msg.getDisplayMessageBody() + "  time:"
-                        + msg.getTimestampMillis());
+//                System.out.println("number:" + msg.getOriginatingAddress()
+//                        + "   body:" + msg.getDisplayMessageBody() + "  time:"
+//                        + msg.getTimestampMillis());
 
+                mess += msg.getDisplayMessageBody();
 //                Toast.makeText(context,msg.getDisplayMessageBody(),Toast.LENGTH_SHORT).show();
                 Log.i("zcc","---------MyReceiver 33");
 
             }
         }
-        String mess = msg.getDisplayMessageBody();
+//        String mess = msg.getDisplayMessageBody();
         String anw = ""; int flag;
         try{
             Log.i("zcc","MyReceiver ********* 111"+mess);
