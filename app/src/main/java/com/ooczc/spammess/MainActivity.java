@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements
 
         listView.setOnItemClickListener(this);
 
-        listView.setOnItemLongClickListener(this);
+//        listView.setOnItemLongClickListener(this);
 
 
         Log.i("zcc","---------MainActivity  222");

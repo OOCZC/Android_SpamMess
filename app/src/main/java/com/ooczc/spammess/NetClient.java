@@ -18,6 +18,7 @@ public class NetClient {
     String ServerIP = "123.206.66.244";
     String reply = "8";
     String messStr;
+    String messStr2;
 
     public  String isSpamMess(String mess) throws IOException {
         //1.建立客户端socket连接，指定服务器位置及端口
@@ -40,6 +41,26 @@ public class NetClient {
         }
 //        Log.i("zcc","---------NetClient   isSpamMess 222");
 //        return "error";
+    }
+    public void addMess(String mess) throws IOException{
+//        messStr = mess;
+        messStr2 = mess;
+        Log.i("zcc","---------NetClient   addMess *****1 mess ="+messStr2);
+        new MyTread2().start();
+        Log.i("zcc","---------NetClient   addMess *****2 mess ="+messStr2);
+//        while(true){
+//            Log.i("zzc", "---------NetClient  循环 1");
+//            int i=0;int j=0;
+//            if(reply != "8") {
+//                return reply;
+////                Log.i("zcc", "---------NetClient  循环");
+//            }
+//            else{
+//                i++;
+//                if(i % 10000 == 0)
+//                    Log.i("zcc","---------NetClient  循环 2");
+//            }
+//        }
     }
 /*
         Log.i("zcc","NetClient ********"+mess+"*****"+mess.length());
@@ -109,6 +130,60 @@ public class NetClient {
     	s.close();
     	return str;
     	*/
+        class MyTread2 extends Thread{
+            String ServerIP = "123.206.66.244";
+            @Override
+            public void run(){
+                Log.i("zcc", "---------MyTread2   0");
+                try {
+                    Log.i("zcc", "---------MyTread2   1");
+                    Socket socket = new Socket(ServerIP, 6464);
+                    Log.i("zcc", "---------MyTread2   2");
+//        System.out.println("111");
+                    //2.得到socket读写流
+                    OutputStream os = socket.getOutputStream();
+                    Log.i("zcc", "---------MyTread2   3");
+                    PrintWriter pw = new PrintWriter(os);
+                    Log.i("zcc", "---------MyTread2   4");
+//        System.out.println("222");
+                    Log.i("zcc", "---------MyTread2   5");
+                    //输入流
+                    InputStream is = socket.getInputStream();
+                    Log.i("zcc", "---------MyTread2   6");
+                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
+//        System.out.println("333");
+                    Log.i("zcc", "---------MyTread2   7");
+                    //3.利用流按照一定的操作，对socket进行读写操作
+//        String info="用户名：Tom,用户密码：123456";
+//        String reply=br.readLine();
+//        System.out.println(reply);
+                    Log.i("zcc","---------MyTread2   messStr ="+messStr);
+                    pw.write(messStr2);
+                    Log.i("zcc", "---------MyTread2   8");
+                    pw.flush();
+                    Log.i("zcc", "---------MyTread2   9");
+//        System.out.println("444");
+                    Log.i("zcc", "---------MyTread2   10,reply init "+reply);
+//        socket.shutdownOutput();
+//                    reply = br.readLine();
+                    Log.i("zcc", "---------MyTread2   11");
+//                System.out.println(reply);
+                    Log.i("zcc", "---------MyTread2   reply = "+reply);
+
+                    os.close();
+                    is.close();
+                    pw.close();
+                    br.close();
+
+                } catch (Exception e){
+                    e.printStackTrace();
+                    Log.i("zcc", "---------MyTread2   Exception");
+                }
+            }
+
+
+
+        }
 
 
     class MyThread extends Thread{
@@ -155,9 +230,16 @@ public class NetClient {
 //                System.out.println(reply);
                 Log.i("zcc", "---------MyThread   reply = "+reply);
 
+                os.close();
+                is.close();
+                pw.close();
+                br.close();
+
             } catch (Exception e){
                 e.printStackTrace();
                 Log.i("zcc", "---------MyThread   Exception");
+            } finally {
+
             }
 //            return reply;
         }
