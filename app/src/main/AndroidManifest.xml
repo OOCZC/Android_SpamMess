@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -15,13 +14,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".MainActivity"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".MessActivity" />
 
         <receiver
@@ -33,12 +27,17 @@
             </intent-filter>
         </receiver>
 
-        <!--android:theme="@android:style/Theme.Dialog" -->
+        <!-- android:theme="@android:style/Theme.Dialog" -->
         <activity
             android:name=".Dialog_Activity"
-            android:theme="@style/Theme.AppCompat.Dialog"
-            />
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity android:name=".welcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

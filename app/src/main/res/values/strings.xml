@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">垃圾短信识别 Powered by ZC</string>
+    <string name="app_name">垃圾短信识别</string>
     <string name="mess">分公的斐</string>
     <string name="dialog">识别到疑似垃圾短信！识别到疑似垃圾短信！识别到疑似垃圾短信！识别到疑似垃圾短信！识别到疑似垃圾短信！</string>
 </resources>
